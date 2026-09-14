@@ -1,10 +1,12 @@
 ﻿using CIW.Code.System.Interface;
+using DevLib.AnimatorSystem;
+using DevLib.ModuleSystem;
 using System.Collections;
 using UnityEngine;
 
 namespace CIW.Code.Player
 {
-    public class PlayerView : DevLib.ModuleSystem.Module
+    public class PlayerView : Module
     {
         [SerializeField] SpriteRenderer spriteRenderer;
         [SerializeField] Animator animator;
@@ -18,7 +20,7 @@ namespace CIW.Code.Player
         PlayerMotor2D _motor;
         PlayerGroundSensor _groundSensor;
 
-        public override void Initialize(DevLib.ModuleSystem.ModuleOwner owner)
+        public override void Initialize(ModuleOwner owner)
         {
             base.Initialize(owner);
             spriteRenderer ??= GetComponentInChildren<SpriteRenderer>();
