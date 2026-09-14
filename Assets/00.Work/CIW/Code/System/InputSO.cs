@@ -9,9 +9,11 @@ namespace CIW.Code.System
     {
         public event Action OnInteractPressed;
         public event Action OnJumpPressed;
-        public event Action<Vector2> OnMovePressed;
+        public event Action OnJumpReleased;
 
         Controls _controls;
+
+        public Vector2 MoveDir { get; private set; }
         
         private void OnEnable()
         {
@@ -26,7 +28,8 @@ namespace CIW.Code.System
 
         private void OnDisable()
         {
-            _controls.Player.Disable();
+            MoveDir = Vector2.zero;
+            _controls?.Player.Disable();
         }
 
         public void OnInteract(InputAction.CallbackContext context)
@@ -39,12 +42,15 @@ namespace CIW.Code.System
         {
             if (context.performed)
                 OnJumpPressed?.Invoke();
+
+            if (context.canceled)
+                OnJumpReleased?.Invoke();
         }
 
         public void OnMove(InputAction.CallbackContext context)
         {
             Vector2 vec = context.ReadValue<Vector2>();
-            OnMovePressed?.Invoke(vec);
+            MoveDir = vec;
         }
     }
 }
