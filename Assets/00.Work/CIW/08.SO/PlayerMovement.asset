@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf028a49ac1427189f95a61cbf3a814, type: 3}
+  m_Name: PlayerMovement
+  m_EditorClassIdentifier: Assembly-CSharp::CIW.Code.Player.PlayerMovementDataSO
+  MoveSpeed: 7
+  GroundAcceleration: 70
+  GroundDeceleration: 90
+  AirAcceleration: 45
+  JumpPower: 12
+  JumpCutMultiplier: 0.45
+  RisingGravity: 28
+  FallingGravity: 40
+  MaxFallSpeed: 20
+  CoyoteTime: 0.08
+  JumpBufferTime: 0.1
