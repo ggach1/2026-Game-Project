@@ -1,52 +1,12 @@
 ﻿using DevLib.ModuleSystem;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine.Events;
 
 namespace CIW.Code.System
 {
+    /// <summary>
+    /// 게임 개체의 공통 기반입니다. 모듈 검색과 초기화는 ModuleOwner가 담당하고,
+    /// 사망 같은 생명 주기는 각 개체의 전용 모듈이 담당합니다.
+    /// </summary>
     public abstract class Entity : ModuleOwner
     {
-        bool _isDead;
-
-        public bool IsDead
-        {
-            get => _isDead;
-            set
-            {
-                if (_isDead) return;
-
-                _isDead = value;
-            }
-        }
-
-        public UnityEvent OnDeadEvent;
-
-        protected Dictionary<Type, IModule> _components;
-
-        protected override void Awake()
-        {
-            base.Awake();
-            _components = new Dictionary<Type, IModule>();
-            AddComponents();
-        }
-
-        protected override void Start()
-        {
-        }
-
-        protected virtual void AddComponents()
-        {
-            GetComponentsInChildren<IModule>().ToList().ForEach(compo => _components.Add(compo.GetType(), compo));
-        }
-
-        public void DestroyEntity()
-        {
-            Die();
-            Destroy(gameObject);
-        }
-
-        protected virtual void Die() { }
     }
 }
