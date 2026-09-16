@@ -5,17 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8be6aa8-19b9-45b7-a4be-1c8b9d8cc48f" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/00.Manager.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/IInteractable.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/IInteractable.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/DropSaw.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/DropSaw.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.2026-Game-Project/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2026-Game-Project/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/InteractSignObject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/InteractSignObject.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Missile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Missile.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Saw.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TargetMoveObject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TargetMoveObject.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2026-Game-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2026-Game-Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Black &amp; White Environments/Assets/Scenes/Example Scene/Example_Tile_Palette/Example_Palette.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Black &amp; White Environments/Assets/Scenes/Example Scene/Example_Tile_Palette/Example_Palette.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/KMJ.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/KMJ.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/00.Scene/KMJ.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/00.Scene/KMJ.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/IInteractable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/IInteractable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/DropSaw.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/DropSaw.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Saw.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +28,10 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/IInteractable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/DropSaw.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/InteractSignObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Missile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Saw.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TargetMoveObject.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -119,7 +123,7 @@
       <workItem from="1788964093476" duration="376000" />
       <workItem from="1789038308665" duration="1300000" />
       <workItem from="1789304810015" duration="628000" />
-      <workItem from="1789449302829" duration="313000" />
+      <workItem from="1789449302829" duration="7991000" />
     </task>
     <servers />
   </component>
