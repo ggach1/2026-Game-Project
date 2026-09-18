@@ -12,6 +12,8 @@ namespace CIW.Code.System.Interface
         Crusher,
         Saw,
         Projectile,
+
+        End,
     }
 
     public readonly struct DeathContext

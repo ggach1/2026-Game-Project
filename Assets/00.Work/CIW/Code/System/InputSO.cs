@@ -7,7 +7,7 @@ namespace CIW.Code.System
     [CreateAssetMenu(fileName = "Input", menuName = "SO/Input", order = 1)]
     public class InputSO : ScriptableObject, Controls.IPlayerActions
     {
-        public event Action OnInteractPressed;
+        public event Action OnInteractPressed; // 문이나 그런거
         public event Action OnJumpPressed;
         public event Action OnJumpReleased;
 

@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using DevLib.ModuleSystem;
+using System.Collections;
 using UnityEngine;
 
 namespace CIW.Code.Player
 {
-    public class PlayerRuleController : DevLib.ModuleSystem.Module
+    public class PlayerRuleController : Module
     {
         public bool CanMove { get; private set; } = true;
         public bool CanJump { get; private set; } = true;
@@ -20,7 +21,7 @@ namespace CIW.Code.Player
 
         public void SetGravityDirection(Vector2 dir)
         {
-            // 0 벡터로는 중력과 점프 방향을 계산할 수 없어 기본 방향으로 되돌립니다.
+            // 0 벡터로는 중력과 점프 방향을 계산할 수 없어 기본 방향으로 되돌림
             GravityDirection = dir.sqrMagnitude > Mathf.Epsilon ? dir.normalized : Vector2.down;
         }
 
