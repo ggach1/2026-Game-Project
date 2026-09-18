@@ -543,6 +543,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2911150862511699206, guid: 944d495022bcc434da572ea40541e761, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3661337
+      objectReference: {fileID: 0}
+    - target: {fileID: 2911150862511699206, guid: 944d495022bcc434da572ea40541e761, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.6321833
+      objectReference: {fileID: 0}
     - target: {fileID: 4143555954377522455, guid: 944d495022bcc434da572ea40541e761, type: 3}
       propertyPath: m_Name
       value: Player
@@ -553,7 +561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4371958824270385410, guid: 944d495022bcc434da572ea40541e761, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.43
       objectReference: {fileID: 0}
     - target: {fileID: 4371958824270385410, guid: 944d495022bcc434da572ea40541e761, type: 3}
       propertyPath: m_LocalPosition.z
@@ -586,6 +594,26 @@ PrefabInstance:
     - target: {fileID: 4371958824270385410, guid: 944d495022bcc434da572ea40541e761, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324832959818065969, guid: 944d495022bcc434da572ea40541e761, type: 3}
+      propertyPath: deathTrigger
+      value: Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324832959818065969, guid: 944d495022bcc434da572ea40541e761, type: 3}
+      propertyPath: respawnTrigger
+      value: Respawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324832959818065969, guid: 944d495022bcc434da572ea40541e761, type: 3}
+      propertyPath: groundedParameter
+      value: Grounded
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324832959818065969, guid: 944d495022bcc434da572ea40541e761, type: 3}
+      propertyPath: moveSpeedParameter
+      value: MoveSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324832959818065969, guid: 944d495022bcc434da572ea40541e761, type: 3}
+      propertyPath: verticalSpeedParameter
+      value: VertSpeed
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
