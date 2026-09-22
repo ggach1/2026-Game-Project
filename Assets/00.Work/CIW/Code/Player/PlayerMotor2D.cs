@@ -43,15 +43,15 @@ namespace CIW.Code.Player
             _groundSensor.CheckGround(gravityDirection);
             UpdateGraceTimers(deltaTime);
 
-            Vector2 velocity = rigid.linearVelocity;
+            Vector2 vel = rigid.linearVelocity;
             Vector2 horizontalAxis = GetHorizontalAxis(gravityDirection);
 
-            ApplyHorizontalMovement(ref velocity, horizontalAxis, deltaTime);
-            TryApplyJump(ref velocity, gravityDirection);
-            ApplyJumpCut(ref velocity, gravityDirection);
-            ApplyGravity(ref velocity, gravityDirection, deltaTime);
+            ApplyHorizontalMovement(ref vel, horizontalAxis, deltaTime);
+            TryApplyJump(ref vel, gravityDirection);
+            ApplyJumpCut(ref vel, gravityDirection);
+            ApplyGravity(ref vel, gravityDirection, deltaTime);
 
-            rigid.linearVelocity = velocity;
+            rigid.linearVelocity = vel;
         }
 
         public void SetMoveInput(float input)
@@ -104,7 +104,7 @@ namespace CIW.Code.Player
             if (rigid == null)
                 return;
 
-            // 위치만 옮기면 사망 직전 속도가 남으므로 모든 물리 상태를 함께 초기화합니다.
+            // 위치만 옮기면 사망 직전 속도가 남으므로 모든 물리 상태를 함께 초기화
             rigid.position = pos;
             rigid.linearVelocity = Vector2.zero;
             rigid.angularVelocity = 0f;
@@ -127,6 +127,34 @@ namespace CIW.Code.Player
                 return 0f;
 
             return Vector2.Dot(rigid.linearVelocity, GetHorizontalAxis(_rules.GravityDirection));
+        }
+
+        public float GetNormalizedHorizontalSpeed()
+        {
+            if (movementData == null || _rules == null)
+                return 0f;
+
+            // 규칙에 의해 달라진 최고 속도를 기준으로 정규화해 애니메이션이 물리 수치에 종속되지 않게 합니다.
+            float referenceSpeed = movementData.MoveSpeed * _rules.MoveMultiplier;
+            return referenceSpeed > Mathf.Epsilon
+                ? Mathf.Clamp01(Mathf.Abs(GetHorizontalSpeed()) / referenceSpeed)
+                : 0f;
+        }
+
+        public float GetNormalizedVerticalSpeed()
+        {
+            if (movementData == null || _rules == null)
+                return 0f;
+
+            float verticalSpeed = GetVerticalSpeed();
+            float referenceSpeed = verticalSpeed >= 0f
+                ? movementData.JumpPower * _rules.JumpMultiplier
+                : movementData.MaxFallSpeed;
+
+            // 하강 속도는 음수이므로 절댓값을 사용해 Animator가 역재생되지 않도록 합니다.
+            return referenceSpeed > Mathf.Epsilon
+                ? Mathf.Clamp01(Mathf.Abs(verticalSpeed) / referenceSpeed)
+                : 0f;
         }
 
         private void UpdateGraceTimers(float deltaTime)
@@ -163,7 +191,7 @@ namespace CIW.Code.Player
             if (_jumpBufferTimer <= 0f || _coyoteTimer <= 0f || !_rules.CanJump)
                 return;
 
-            // 낙하 속도를 먼저 지워야 점프를 누른 시점과 관계없이 점프 높이가 일정합니다.
+            // 낙하 속도를 먼저 지워야 점프를 누른 시점과 관계없이 점프 높이가 일정하게 된당
             float fallingSpeed = Vector2.Dot(velocity, gravityDirection);
             if (fallingSpeed > 0f)
                 velocity -= gravityDirection * fallingSpeed;
@@ -207,7 +235,7 @@ namespace CIW.Code.Player
         {
             Vector2 axis = new Vector2(-gravityDirection.y, gravityDirection.x).normalized;
 
-            // 중력이 위아래로 뒤집혀도 오른쪽 입력은 항상 화면 오른쪽을 향하게 합니다.
+            // 중력이 위아래로 뒤집혀도 오른쪽 입력은 항상 화면 오른쪽을 향하게 함
             if (axis.x < 0f)
                 axis = -axis;
 
