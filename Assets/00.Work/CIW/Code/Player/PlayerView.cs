@@ -15,6 +15,7 @@ namespace CIW.Code.Player
         [SerializeField] string moveSpeedParameter = "MoveSpeed";
         [SerializeField] string deathTrigger = "Death";
         [SerializeField] string respawnTrigger = "Respawn";
+        [SerializeField] string jumpState = "Base Layer.player jump";
 
         [Header("Playback Speed")]
         [SerializeField] string runPlaybackParameter = "RunPlayback";
@@ -27,6 +28,11 @@ namespace CIW.Code.Player
         CIW.Code.System.EntityAnimator _entityAnimator;
         PlayerMotor2D _motor;
         PlayerGroundSensor _groundSensor;
+        PlayerDeathBurst _deathBurst;
+        PlayerRuleController _rules;
+        bool _dead;
+        uint _seenJumpSequence;
+        int _jumpStateHash;
 
         int _groundedHash;
         int _verticalSpeedHash;
@@ -42,6 +48,10 @@ namespace CIW.Code.Player
             _entityAnimator = owner.GetModule<CIW.Code.System.EntityAnimator>();
             _motor = owner.GetModule<PlayerMotor2D>();
             _groundSensor = owner.GetModule<PlayerGroundSensor>();
+            _deathBurst = owner.GetComponent<PlayerDeathBurst>();
+            _rules = owner.GetModule<PlayerRuleController>();
+            _seenJumpSequence = _motor.JumpSequence;
+            _jumpStateHash = ToHash(jumpState);
 
             // 문자열 해시는 초기화 때 한 번만 계산해 매 프레임 변환 비용을 만들지 않습니다.
             _groundedHash = ToHash(groundedParameter);
@@ -53,9 +63,9 @@ namespace CIW.Code.Player
             _airPlaybackHash = ToHash(airPlaybackParameter);
         }
 
-        private void LateUpdate()
+        private void Update()
         {
-            if (_motor == null || _groundSensor == null)
+            if (_dead || _motor == null || _groundSensor == null)
                 return;
 
             SetMoveDirection(_motor.GetHorizontalSpeed());
@@ -64,6 +74,14 @@ namespace CIW.Code.Player
             SetPlaybackSpeed(
                 _motor.GetNormalizedHorizontalSpeed(),
                 _motor.GetNormalizedVerticalSpeed());
+
+            // Animator 평가 전에 최신 파라미터를 전달합니다. 버퍼 점프는 Grounded=true인 렌더 프레임 없이
+            // 일어날 수 있으므로 접지 전환 대신 실제 점프 번호로 Jump를 재시작합니다. 공중 연타는 번호가 바뀌지 않습니다.
+            if (_seenJumpSequence != _motor.JumpSequence)
+            {
+                _seenJumpSequence = _motor.JumpSequence;
+                _entityAnimator?.RestartState(_jumpStateHash);
+            }
         }
 
         public void SetMoveDirection(float dir)
@@ -100,24 +118,37 @@ namespace CIW.Code.Player
 
         public void PlayDeath(DeathContext context)
         {
+            _dead = true;
+            // 렌더러를 숨기기 전에 마지막 위치를 기준으로 파편을 생성합니다.
+            _deathBurst?.Play(_entityAnimator?.Renderer, _rules.GravityDirection);
+            _entityAnimator?.ResetTrigger(_respawnHash);
             _entityAnimator?.SetTrigger(_deathHash);
 
-            // 전용 사망 애니메이션이 추가되기 전까지 즉시 숨기는 방식으로 사망 상태를 표현합니다.
+            // 파편은 별도 렌더러로 재생하며 본체는 Animator의 빈 Dead 상태에서 숨겨 둡니다.
             _entityAnimator?.SetVisible(false);
         }
         public void PlayRespawn()
         {
+            _entityAnimator?.ResetTrigger(_deathHash);
             _entityAnimator?.SetTrigger(_respawnHash);
         }
 
         public void ResetView(bool faceRight)
         {
+            _dead = false;
+            // 사망 직전 아직 화면에 반영되지 않은 점프를 리스폰 후 재생하지 않습니다.
+            _seenJumpSequence = _motor.JumpSequence;
+            _deathBurst?.Clear();
             if (_entityAnimator == null)
                 return;
 
             _entityAnimator.ResetAnimator();
             _entityAnimator.SetVisible(true);
             _entityAnimator.SetMovementDirection(faceRight ? Vector2.right : Vector2.left);
+            SetMoveDirection(0f);
+            SetVerticalSpeed(0f);
+            SetGrounded(false);
+            SetPlaybackSpeed(0f, 0f);
         }
 
         private static int ToHash(string parameter)
