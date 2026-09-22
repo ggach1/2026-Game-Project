@@ -33,7 +33,11 @@ namespace KMJ.Code.Object
         
 
         public void SetDirection(Vector2 direction) => _moveDirection = direction.normalized;
-        private void KillEnemy() => Debug.Log("적을 처치함");
+
+        private void KillEnemy(Collider2D collider2D)
+        {
+            collider2D.gameObject.SetActive(false);
+        }
 
         private void FixedUpdate()
         {
@@ -47,7 +51,7 @@ namespace KMJ.Code.Object
         {
             if ((targetMask.value & (1 << other.gameObject.layer)) != 0)
             {
-                KillEnemy();
+                KillEnemy(other);
             }
         }
     }

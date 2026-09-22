@@ -22,13 +22,13 @@ namespace KMJ.Code.Object
             
             OnInteractEvent?.Invoke();
         }
-        
-        private void OnCollisionEnter2D(Collision2D other)
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if ((targetLayer.value & (1 << other.gameObject.layer)) != 0)
             {
                 Sign();
-            }
-        }
+            } 
+        } 
     }
 }

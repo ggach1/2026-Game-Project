@@ -11,6 +11,8 @@ namespace KMJ.Code.Object
         [SerializeField] private UnityEvent onMissileTimeEvent;
         [SerializeField] private float eventTime;
         [SerializeField] private Saw sawPrefab;
+
+        [SerializeField] private float waitTime;
         
         private void Awake()
         {
@@ -26,7 +28,7 @@ namespace KMJ.Code.Object
 
         private IEnumerator MissileDetectedGround()
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(waitTime);
             
             Saw saw1 = Instantiate(sawPrefab, transform.position, Quaternion.identity);
             Saw saw2 = Instantiate(sawPrefab, transform.position, Quaternion.identity);
