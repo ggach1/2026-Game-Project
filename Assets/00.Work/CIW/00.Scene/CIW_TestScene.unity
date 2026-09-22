@@ -587,6 +587,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5324832959818065971, guid: 944d495022bcc434da572ea40541e761, type: 3}
+      propertyPath: lifetime
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324832959818065971, guid: 944d495022bcc434da572ea40541e761, type: 3}
+      propertyPath: spawnRadius
+      value: 0.55
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
