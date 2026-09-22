@@ -129,6 +129,34 @@ namespace CIW.Code.Player
             return Vector2.Dot(rigid.linearVelocity, GetHorizontalAxis(_rules.GravityDirection));
         }
 
+        public float GetNormalizedHorizontalSpeed()
+        {
+            if (movementData == null || _rules == null)
+                return 0f;
+
+            // 규칙에 의해 달라진 최고 속도를 기준으로 정규화해 애니메이션이 물리 수치에 종속되지 않게 합니다.
+            float referenceSpeed = movementData.MoveSpeed * _rules.MoveMultiplier;
+            return referenceSpeed > Mathf.Epsilon
+                ? Mathf.Clamp01(Mathf.Abs(GetHorizontalSpeed()) / referenceSpeed)
+                : 0f;
+        }
+
+        public float GetNormalizedVerticalSpeed()
+        {
+            if (movementData == null || _rules == null)
+                return 0f;
+
+            float verticalSpeed = GetVerticalSpeed();
+            float referenceSpeed = verticalSpeed >= 0f
+                ? movementData.JumpPower * _rules.JumpMultiplier
+                : movementData.MaxFallSpeed;
+
+            // 하강 속도는 음수이므로 절댓값을 사용해 Animator가 역재생되지 않도록 합니다.
+            return referenceSpeed > Mathf.Epsilon
+                ? Mathf.Clamp01(Mathf.Abs(verticalSpeed) / referenceSpeed)
+                : 0f;
+        }
+
         private void UpdateGraceTimers(float deltaTime)
         {
             _jumpBufferTimer = Mathf.Max(0f, _jumpBufferTimer - deltaTime);

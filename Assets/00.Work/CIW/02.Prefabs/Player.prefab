@@ -102,7 +102,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.050885558, y: -0.002678156}
+  m_Offset: {x: -0.050885558, y: 0.6321833}
   m_Size: {x: 0.52682483, y: 1.3661337}
   m_Direction: 0
 --- !u!114 &7045953409265711950
@@ -197,11 +197,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0781aa8367afae34cb03c7171f83b03a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CIW.Code.Player.PlayerView
-  groundedParameter: 
-  verticalSpeedParameter: 
-  moveSpeedParameter: 
-  deathTrigger: 
-  respawnTrigger: 
+  groundedParameter: Grounded
+  verticalSpeedParameter: VertSpeed
+  moveSpeedParameter: MoveSpeed
+  deathTrigger: Death
+  respawnTrigger: Respawn
+  runPlaybackParameter: RunPlayback
+  airPlaybackParameter: AirPlayback
+  minRunPlaybackSpeed: 0.75
+  maxRunPlaybackSpeed: 1.25
+  minAirPlaybackSpeed: 0.75
+  maxAirPlaybackSpeed: 1.35
 --- !u!1 &8551888376234435011
 GameObject:
   m_ObjectHideFlags: 0
