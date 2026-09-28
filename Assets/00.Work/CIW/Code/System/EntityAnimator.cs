@@ -55,6 +55,15 @@ namespace CIW.Code.System
                 animator.Play(clipHash);
         }
 
+        public void RestartState(int stateHash)
+        {
+            if (animator == null || stateHash == 0 || !animator.HasState(0, stateHash))
+                return;
+
+            // 같은 상태가 재생 중이거나 전환 중이어도 새 동작은 반드시 0초부터 시작합니다.
+            animator.Play(stateHash, 0, 0f);
+        }
+
         public void SetMovementDirection(Vector2 dir)
         {
             if (dir.sqrMagnitude <= Mathf.Epsilon)
@@ -88,7 +97,17 @@ namespace CIW.Code.System
         public void ResetAnimator()
         {
             if (animator != null)
+            {
                 animator.Rebind();
+                // 기본 상태의 첫 프레임을 즉시 적용해 다시 표시할 때 사망 직전 스프라이트가 보이지 않게 합니다.
+                animator.Update(0f);
+            }
+        }
+
+        public void ResetTrigger(int parameterHash)
+        {
+            if (animator != null && parameterHash != 0)
+                animator.ResetTrigger(parameterHash);
         }
 
         public void SetVisible(bool visible)

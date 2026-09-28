@@ -1,9 +1,10 @@
 using System;
+using KMJ.Code.Object;
 using UnityEngine;
 
 namespace _00.Work.CUH.Code.SwitchSystem
 {
-    public class Switch : MonoBehaviour, ISwitch
+    public class Switch : MonoBehaviour, ISwitch, IInteractable
     {
         [field: SerializeField] public bool IsActive { get; private set; }
 
@@ -17,6 +18,7 @@ namespace _00.Work.CUH.Code.SwitchSystem
             OnStateChanged?.Invoke(IsActive);
         }
 
+        public void Interact() => ToggleSwitch();
         public void ToggleSwitch() => SetActive(!IsActive);
 
         protected virtual void OnDestroy()

@@ -22,6 +22,7 @@ namespace CIW.Code.Player
         PlayerMotor2D _motor;
         PlayerView _view;
         PlayerRuleController _rules;
+        PlayerGroundSensor _groundSensor;
 
         public event Action<DeathContext> Died;
         public event Action Respawned;
@@ -33,6 +34,8 @@ namespace CIW.Code.Player
             _motor = owner.GetModule<PlayerMotor2D>();
             _view = owner.GetModule<PlayerView>();
             _rules = owner.GetModule<PlayerRuleController>();
+            _groundSensor = owner.GetModule<PlayerGroundSensor>();
+            SpawnData = new PlayerSpawnData(owner.transform.position, true);
         }
 
         public void Kill(DeathContext context)
@@ -58,8 +61,12 @@ namespace CIW.Code.Player
             State = PlayerLifeState.Respawning;
             SpawnData = data;
 
+            // 살아 있는 상태에서 외부 리스폰을 요청해도 초기화 중 물리와 입력을 차단합니다.
+            _inputController.SetInputEnabled(false);
+            _motor.SetSimulationEnabled(false);
             _rules.ResetAll();
             _motor.ResetMotion(data.Position);
+            _groundSensor.ResetContactState();
             _view.ResetView(data.FaceRight);
             _view.PlayRespawn();
 
