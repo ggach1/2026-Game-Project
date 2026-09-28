@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8be6aa8-19b9-45b7-a4be-1c8b9d8cc48f" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/SawShooter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/SawShooter.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2026-Game-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2026-Game-Project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/00.Scene/KMJ.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/00.Scene/KMJ.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TargetMoveObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TargetMoveObject.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +23,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/InteractSignObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Missile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Saw.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/SawShooter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TargetMoveObject.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -117,6 +119,7 @@
       <workItem from="1789449302829" duration="7991000" />
       <workItem from="1790053896353" duration="3182000" />
       <workItem from="1790134169934" duration="1483000" />
+      <workItem from="1790603300091" duration="1674000" />
     </task>
     <servers />
   </component>
