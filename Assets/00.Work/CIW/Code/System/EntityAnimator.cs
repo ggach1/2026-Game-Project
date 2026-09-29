@@ -16,6 +16,50 @@ namespace CIW.Code.System
 
         Entity _entity;
         Vector2 _facingDirection = Vector2.right;
+        bool _exitPresentation;
+        bool _animatorWasEnabled;
+        Vector3 _exitLocalPosition, _exitScale, _exitStart, _exitTarget;
+        Color _exitColor;
+
+        public void BeginExitPresentation(Vector3 target)
+        {
+            RestoreExitPresentation();
+            if (spriteRenderer == null) return;
+            _exitPresentation = true;
+            _exitLocalPosition = spriteRenderer.transform.localPosition;
+            _exitScale = spriteRenderer.transform.localScale;
+            _exitColor = spriteRenderer.color;
+            _exitStart = spriteRenderer.transform.position;
+            _exitTarget = target;
+            _exitTarget.z = _exitStart.z;
+            _animatorWasEnabled = animator != null && animator.enabled;
+            // 입장 중에는 클립이 색상/Transform을 덮어쓰지 않도록 일시 정지합니다.
+            if (animator != null) animator.enabled = false;
+        }
+
+        public void SetExitProgress(float progress)
+        {
+            if (!_exitPresentation || spriteRenderer == null) return;
+            float t = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(progress));
+            spriteRenderer.transform.position = Vector3.Lerp(_exitStart, _exitTarget, t);
+            spriteRenderer.transform.localScale = _exitScale * Mathf.Lerp(1f, 0.2f, t);
+            Color color = _exitColor;
+            color.a *= 1f - t;
+            spriteRenderer.color = color;
+        }
+
+        public void RestoreExitPresentation()
+        {
+            if (!_exitPresentation) return;
+            _exitPresentation = false;
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.transform.localPosition = _exitLocalPosition;
+                spriteRenderer.transform.localScale = _exitScale;
+                spriteRenderer.color = _exitColor;
+            }
+            if (animator != null) animator.enabled = _animatorWasEnabled;
+        }
 
         public Animator Animator => animator;
         public SpriteRenderer Renderer => spriteRenderer;
