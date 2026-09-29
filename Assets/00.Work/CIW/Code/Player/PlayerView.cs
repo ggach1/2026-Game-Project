@@ -133,6 +133,26 @@ namespace CIW.Code.Player
             _entityAnimator?.SetTrigger(_respawnHash);
         }
 
+        public void PlayEscape()
+        {
+            // 출구 안으로 사라지는 임시 표현. 사망 파편과 Death 트리거는 발생시키지 않습니다.
+            _dead = true;
+            _deathBurst?.Clear();
+            _entityAnimator?.ResetTrigger(_deathHash);
+            _entityAnimator?.ResetTrigger(_respawnHash);
+            _entityAnimator?.SetVisible(false);
+        }
+
+        public void BeginExit(Vector3 target)
+        {
+            _dead = true;
+            _entityAnimator?.ResetTrigger(_deathHash);
+            _entityAnimator?.ResetTrigger(_respawnHash);
+            _entityAnimator?.BeginExitPresentation(target);
+        }
+
+        public void SetExitProgress(float progress) => _entityAnimator?.SetExitProgress(progress);
+
         public void ResetView(bool faceRight)
         {
             _dead = false;
@@ -142,6 +162,7 @@ namespace CIW.Code.Player
             if (_entityAnimator == null)
                 return;
 
+            _entityAnimator.RestoreExitPresentation();
             _entityAnimator.ResetAnimator();
             _entityAnimator.SetVisible(true);
             _entityAnimator.SetMovementDirection(faceRight ? Vector2.right : Vector2.left);

@@ -9,7 +9,9 @@ namespace CIW.Code.Player
     {
         Alive,
         Dead,
-        Respawning
+        Respawning,
+        Escaped,
+        EnteringExit
     }
 
     public class PlayerLife : DevLib.ModuleSystem.Module
@@ -26,6 +28,38 @@ namespace CIW.Code.Player
 
         public event Action<DeathContext> Died;
         public event Action Respawned;
+        public event Action Escaped;
+
+        public bool TryEscape()
+        {
+            if (State != PlayerLifeState.Alive && State != PlayerLifeState.EnteringExit) return false;
+            // 완료 상태를 먼저 확정해 같은 프레임의 다른 출구/함정이 중복 처리하지 못하게 합니다.
+            State = PlayerLifeState.Escaped;
+            _inputController.SetInputEnabled(false);
+            _motor.SetSimulationEnabled(false);
+            _view.PlayEscape();
+            Escaped?.Invoke();
+            return true;
+        }
+
+        public bool TryBeginExit(Vector3 target)
+        {
+            if (State != PlayerLifeState.Alive || !_groundSensor.IsGrounded) return false;
+            State = PlayerLifeState.EnteringExit;
+            _inputController.SetInputEnabled(false);
+            _motor.SetSimulationEnabled(false);
+            _view.BeginExit(target);
+            return true;
+        }
+
+        public void CancelExit()
+        {
+            if (State != PlayerLifeState.EnteringExit) return;
+            _view.ResetView(_owner.GetModule<CIW.Code.System.EntityAnimator>().GetFacingDirection().x >= 0f);
+            State = PlayerLifeState.Alive;
+            _motor.SetSimulationEnabled(true);
+            _inputController.SetInputEnabled(true);
+        }
 
         public override void Initialize(DevLib.ModuleSystem.ModuleOwner owner)
         {

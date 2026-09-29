@@ -13,6 +13,7 @@ namespace CIW.Code.Player
         public bool IsTouchingWall { get; private set; }
         public Vector2 GroundNormal { get; private set; } = Vector2.up;
         public Collider2D GroundCollider { get; private set; }
+        public Collider2D BodyCollider => bodyCollider;
 
         readonly RaycastHit2D[] _castHits = new RaycastHit2D[8];
         ContactFilter2D _groundFilter;
