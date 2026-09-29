@@ -5,11 +5,20 @@ namespace KMJ.Code.Object
 {
     public class TargetMoveObject : MonoBehaviour, IInteractable
     {
+        [Header("Target")]
         [SerializeField] private Transform target;
         [SerializeField] private Transform Secondtarget;
         [SerializeField] private Transform rightTarget;
+        
+        [Space(5)]
+        [Header("Setting")]
+        
+        [Range(0,10)]
         [SerializeField] private float moveTime;
+        
         [SerializeField] private GameObject thisGameObject;
+        
+        [Range(0,10)]
         [SerializeField] private float waitTime;
         
         

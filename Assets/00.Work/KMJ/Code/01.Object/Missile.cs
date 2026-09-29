@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DevLib.ObjectPool.Runtime;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,12 +8,25 @@ namespace KMJ.Code.Object
 {
     public class Missile : MonoBehaviour
     {
+        [Header("Setting")]
         [SerializeField] private LayerMask whatIsGround;
-        [SerializeField] private UnityEvent onMissileTimeEvent;
+        
+        [Range(0,10)]
         [SerializeField] private float eventTime;
-        [SerializeField] private Saw sawPrefab;
-
+        
+        [Range(0,5)]
         [SerializeField] private float waitTime;
+
+        [Space(10)]
+        [Header("Pool")]
+        
+        [SerializeField] private PoolItemSO sawPoolItem;
+        [SerializeField] private PoolManagerSO _poolManager;
+        
+        [Space(10)]
+        [Header("Event")]
+        [SerializeField] private UnityEvent onMissileTimeEvent;
+        
         
         private void Awake()
         {
@@ -29,9 +43,16 @@ namespace KMJ.Code.Object
         private IEnumerator MissileDetectedGround()
         {
             yield return new WaitForSeconds(waitTime);
+
+
+            Saw saw1 = _poolManager.Pop<Saw>(sawPoolItem);
+            Saw saw2 = _poolManager.Pop<Saw>(sawPoolItem);
+
+            saw1.transform.position = transform.position;
+            saw2.transform.position = transform.position;
             
-            Saw saw1 = Instantiate(sawPrefab, transform.position, Quaternion.identity);
-            Saw saw2 = Instantiate(sawPrefab, transform.position, Quaternion.identity);
+            saw1.transform.rotation = Quaternion.identity;
+            saw2.transform.rotation = Quaternion.identity;
                 
             saw1.SetDirection(Vector2.right);
             saw2.SetDirection(Vector2.left);

@@ -6,7 +6,10 @@ namespace KMJ.Code.Object
 {
     public class InteractSignObject : MonoBehaviour
     {
+        [Header("Setting")]
         [SerializeField] private LayerMask targetLayer;
+        
+        [Header("Events")]
         [SerializeField] private UnityEvent OnInteractEvent;
 
         private bool _isActive = true;

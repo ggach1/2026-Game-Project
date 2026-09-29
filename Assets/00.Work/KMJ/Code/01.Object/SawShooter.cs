@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using DevLib.ObjectPool.Editor;
+using DevLib.ObjectPool.Runtime;
 using UnityEngine;
 
 namespace KMJ.Code.Object
@@ -14,13 +16,28 @@ namespace KMJ.Code.Object
     }
     public class SawShooter : MonoBehaviour
     {
+        [Header("Setting")]
         [SerializeField] private SawDirection sawDirection;
-        
         [SerializeField] private bool isLoop = false;
-        [SerializeField] private float shootDelay;
-        [SerializeField] private int maxShootCnt;
-        [SerializeField] private Saw sawPrefab;
 
+        [Range(0f, 10f)]
+        [SerializeField] private float crackCnt;
+        
+        [Range(0,10)]
+        [SerializeField] private float shootDelay;
+        
+        [Range(0,100)]
+        [SerializeField] private int maxShootCnt;
+
+        [SerializeField] private Transform shootTrm;
+        [SerializeField] private Vector3 shootRotation;
+        
+        [Space(10)]
+        [Header("Pool")]
+        [SerializeField] private PoolItemSO sawPrefab;
+        [SerializeField] private PoolManagerSO poolManager;
+
+        
         private void Awake()
         {
             StartCoroutine(ShootSaw());
@@ -28,26 +45,26 @@ namespace KMJ.Code.Object
 
         private void Shoot(SawDirection sawDirection1)
         {
+            Saw sawObj = poolManager.Pop<Saw>(sawPrefab);
+            sawObj.transform.position = shootTrm.position;
+            sawObj.transform.rotation = Quaternion.Euler(shootRotation);
+         
             switch (sawDirection)
             {
                 case SawDirection.Right:
-                    Saw sawRight = Instantiate(sawPrefab, transform.position, Quaternion.identity);
-                    sawRight.SetDirection(Vector3.right);
+                    sawObj.SetDirection(Vector3.right);
                     break;
                 
                 case SawDirection.Left:
-                    Saw sawLeft = Instantiate(sawPrefab, transform.position, Quaternion.identity);
-                    sawLeft.SetDirection(Vector3.left);
+                    sawObj.SetDirection(Vector3.left);
                     break;
                 
                 case  SawDirection.Up:
-                    Saw sawUp = Instantiate(sawPrefab, transform.position, Quaternion.identity);
-                    sawUp.SetDirection(Vector3.up);
+                    sawObj.SetDirection(Vector3.up);
                     break;
                 
                 case  SawDirection.Down:
-                    Saw sawDown = Instantiate(sawPrefab, transform.position, Quaternion.identity);
-                    sawDown.SetDirection(Vector3.down);
+                    sawObj.SetDirection(Vector3.down);
                     break;
                 
                 case SawDirection.None:
@@ -57,12 +74,27 @@ namespace KMJ.Code.Object
         
         private IEnumerator ShootSaw()
         {
-            if(isLoop)
+            if (isLoop)
+            {
+                int cnt = 0;
+                
                 while(true)
                 {
+                    cnt += 1;
+                    
+                    Debug.Log(cnt);
                     yield return new WaitForSeconds(shootDelay);
-                    Shoot(sawDirection);
+                    if (cnt >= crackCnt)
+                    {
+                        Shoot(sawDirection);
+                        yield return new WaitForSeconds(0.05f);
+                        Shoot(sawDirection);
+                        cnt = 0;
+                    }
+                    else
+                        Shoot(sawDirection);
                 }
+            }
             else
             {
                 for (int i = 0; i < maxShootCnt; i++)
