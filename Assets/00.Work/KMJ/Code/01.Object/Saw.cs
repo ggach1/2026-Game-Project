@@ -83,6 +83,7 @@ namespace KMJ.Code.Object
             _rbCompo.linearVelocity = Vector2.zero; 
             StartCoroutine(WaitPushObject());
         }
+        
         private IEnumerator WaitPushObject()
         {
             yield return new WaitForSeconds(lifeTime);

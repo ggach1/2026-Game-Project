@@ -43,7 +43,7 @@ namespace KMJ.Code.Object
             StartCoroutine(ShootSaw());
         }
 
-        private void Shoot(SawDirection sawDirection1)
+        private void Shoot()
         {
             Saw sawObj = poolManager.Pop<Saw>(sawPrefab);
             sawObj.transform.position = shootTrm.position;
@@ -82,17 +82,16 @@ namespace KMJ.Code.Object
                 {
                     cnt += 1;
                     
-                    Debug.Log(cnt);
                     yield return new WaitForSeconds(shootDelay);
                     if (cnt >= crackCnt)
                     {
-                        Shoot(sawDirection);
+                        Shoot();
                         yield return new WaitForSeconds(0.05f);
-                        Shoot(sawDirection);
+                        Shoot();
                         cnt = 0;
                     }
                     else
-                        Shoot(sawDirection);
+                        Shoot();
                 }
             }
             else
@@ -100,7 +99,7 @@ namespace KMJ.Code.Object
                 for (int i = 0; i < maxShootCnt; i++)
                 {
                     yield return new WaitForSeconds(shootDelay);
-                    Shoot(sawDirection);
+                    Shoot();
                 }
             }
         }
