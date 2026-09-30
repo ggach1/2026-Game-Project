@@ -35,7 +35,7 @@ namespace CIW.Code.Player
         {
             _player.Life.Died += HandleDeath;
             _player.Life.Respawned += CancelPendingRespawn;
-            if (!_player.IsAlive) HandleDeath(default);
+            if (_player.Life.State == PlayerLifeState.Dead) HandleDeath(default);
         }
 
         private void Update()
@@ -50,7 +50,7 @@ namespace CIW.Code.Player
 
         private void HandleDeath(DeathContext context)
         {
-            if (_pendingRespawn == null && !_player.IsAlive)
+            if (_pendingRespawn == null && _player.Life.State == PlayerLifeState.Dead)
                 _pendingRespawn = StartCoroutine(RespawnAfterDelay());
         }
 
@@ -58,7 +58,7 @@ namespace CIW.Code.Player
         {
             yield return new WaitForSeconds(Mathf.Max(0.05f, respawnDelay));
             _pendingRespawn = null;
-            if (!_player.IsAlive)
+            if (_player.Life.State == PlayerLifeState.Dead)
                 _player.Respawn(new PlayerSpawnData(
                     spawnPoint != null ? (Vector2)spawnPoint.position : _spawn.Position, _spawn.FaceRight));
         }

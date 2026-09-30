@@ -1,19 +1,40 @@
 using System;
+using System.Collections;
 using System.Numerics;
+using DevLib.ObjectPool.Runtime;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
 namespace KMJ.Code.Object
 {
-    public class Saw : MonoBehaviour, IInteractable
+    public class Saw : MonoBehaviour, IInteractable, IPoolable
     {
+        [Header("Pool")]
+        [field: SerializeField] public PoolItemSO PoolItem { get; set; }
+        [SerializeField] private PoolManagerSO poolManager;
+        
+        [Space(5)]
+        [Header("Setting")]
         [SerializeField] private LayerMask targetMask;
+        
+        [Range(0,3)]
         [SerializeField] private float minGravityScale = 0;
+        
+        [Range(1,10)]
         [SerializeField] private float maxGravityScale = 1;
+        
+        [Range(0,10)]
         [SerializeField] private float moveSpeed = 5;
+        
+        [Range(0,10)]
+        [SerializeField] private float lifeTime = 0;
+        
+        public GameObject GameObject => gameObject;
         
         private Rigidbody2D _rbCompo;
         private Vector2 _moveDirection = Vector2.zero;
+        
+        
 
         private void Awake()
         {
@@ -28,7 +49,8 @@ namespace KMJ.Code.Object
             _rbCompo.gravityScale = minGravityScale;
         }
 
-        
+
+
         public void Interact() => _rbCompo.gravityScale = maxGravityScale;
         
 
@@ -53,6 +75,20 @@ namespace KMJ.Code.Object
             {
                 KillEnemy(other);
             }
+        }
+
+        public void ResetItem()
+        {
+            _rbCompo.gravityScale = minGravityScale;
+            _rbCompo.linearVelocity = Vector2.zero; 
+            StartCoroutine(WaitPushObject());
+        }
+        
+        private IEnumerator WaitPushObject()
+        {
+            yield return new WaitForSeconds(lifeTime);
+            poolManager.Push(this);
+            gameObject.SetActive(false);
         }
     }
 }

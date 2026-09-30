@@ -12,7 +12,11 @@ namespace CIW.Code.Player
         public PlayerLife Life { get; private set; }
         public PlayerRuleController Rules { get; private set; }
         public PlayerView View { get; private set; }
+        // 발 감지용 Trigger가 아니라 실제 접지 판정에 사용하는 몸통입니다.
+        public Collider2D BodyCollider => GetModule<PlayerGroundSensor>()?.BodyCollider;
         public bool IsAlive => Life != null && Life.IsAlive;
+        public bool HasEscaped => Life != null && Life.State == PlayerLifeState.Escaped;
+        public bool TryEscape() => Life != null && Life.TryEscape();
 
         protected override void Awake()
         {
