@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b61ed8d3faab4104d8e12e5c9264bf55, type: 3}
+  m_Name: MenuWorld
+  m_EditorClassIdentifier: Assembly-CSharp::CIW.Code.System.Stage.WorldDefinition
+  entries:
+  - stage: {fileID: 11400000, guid: 33dcd25b208c4dd9a8251d3dc7235578, type: 2}
+    position: {x: -200, y: 0}
+  - stage: {fileID: 11400000, guid: 6edfd92f817a4b04b95328db4b29f181, type: 2}
+    position: {x: 200, y: 0}

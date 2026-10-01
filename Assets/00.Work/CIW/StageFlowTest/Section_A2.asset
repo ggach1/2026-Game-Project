@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92698e2ed53230a4793fb8435ff50796, type: 3}
+  m_Name: Section_A2
+  m_EditorClassIdentifier: Assembly-CSharp::CIW.Code.System.Stage.SectionDefinition
+  sectionId: ciw_test_a2
+  prefab: {fileID: 697178504879817892, guid: 7c1b96c1fa4d52a46a408591d4b58b1b, type: 3}

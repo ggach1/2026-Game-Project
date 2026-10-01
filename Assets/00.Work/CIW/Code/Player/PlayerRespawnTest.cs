@@ -12,6 +12,17 @@ namespace CIW.Code.Player
         [SerializeField] Key deathKey = Key.F8;
         [SerializeField, Min(0.05f)] float respawnDelay = 0.65f;
         [SerializeField] Transform spawnPoint;
+        [SerializeField] bool autoRespawn = true;
+
+        public bool AutoRespawn => autoRespawn;
+
+        public void SetAutoRespawn(bool enabled)
+        {
+            autoRespawn = enabled;
+            // 스테이지 진행 관리자가 리스폰을 맡으면 기존 예약도 즉시 취소합니다.
+            // 컴포넌트 자체는 유지하므로 F8 사망 테스트 입력은 계속 사용할 수 있습니다.
+            if (!enabled) CancelPendingRespawn();
+        }
 
         Player _player;
         PlayerSpawnData _spawn;
@@ -50,7 +61,7 @@ namespace CIW.Code.Player
 
         private void HandleDeath(DeathContext context)
         {
-            if (_pendingRespawn == null && _player.Life.State == PlayerLifeState.Dead)
+            if (autoRespawn && _pendingRespawn == null && _player.Life.State == PlayerLifeState.Dead)
                 _pendingRespawn = StartCoroutine(RespawnAfterDelay());
         }
 
@@ -58,7 +69,7 @@ namespace CIW.Code.Player
         {
             yield return new WaitForSeconds(Mathf.Max(0.05f, respawnDelay));
             _pendingRespawn = null;
-            if (_player.Life.State == PlayerLifeState.Dead)
+            if (autoRespawn && _player.Life.State == PlayerLifeState.Dead)
                 _player.Respawn(new PlayerSpawnData(
                     spawnPoint != null ? (Vector2)spawnPoint.position : _spawn.Position, _spawn.FaceRight));
         }
