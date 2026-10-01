@@ -18,6 +18,7 @@ namespace CIW.Code.System
         [SerializeField] UnityEvent<CIW.Code.Player.Player> onEscaped = new();
         public bool IsCompleted { get; private set; }
         public bool IsUnlocked => unlocked;
+        public UnityEvent<Player.Player> OnEscaped => onEscaped;
 
         Sprite _square;
         SpriteRenderer _frame;
@@ -25,7 +26,7 @@ namespace CIW.Code.System
         SpriteRenderer _handle;
         Vector2 _displayedOpeningSize;
         static readonly Vector2 OpeningOffset = new Vector2(0f, -0.05f);
-        CIW.Code.Player.Player _enteringPlayer;
+        Player.Player _enteringPlayer;
         Coroutine _entryRoutine;
         public bool IsEntering => _enteringPlayer != null;
 
