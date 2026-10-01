@@ -12,6 +12,8 @@ namespace CIW.Code.System.Stage
         readonly TMP_Text _details;
         readonly TMP_Text _progress;
         readonly StageMapGraphic _map;
+        readonly TMP_Text _help;
+        bool _previewOnly;
 
         public StageMapPresentation(GameObject panel, RectTransform nodeRoot, string heading)
         {
@@ -39,24 +41,33 @@ namespace CIW.Code.System.Stage
             _progress=Label("Completion",_content,"",new Vector2(0,-273),new Vector2(1000,32),18);
             var help=Label("Navigation Hint",_content,"CLICK A DOOR TO ENTER    /    ARROWS + ENTER",new Vector2(0,-322),new Vector2(1100,30),16);
             help.color=new Color32(222,160,111,255);
+            _help=help;
             Fit();
         }
 
         public void Refresh(WorldDefinition world, StageProgressService progress)
         {
+            _previewOnly = progress == null;
+            _help.text = _previewOnly ? "UI PREVIEW / STAGES NOT CONNECTED" : "CLICK A DOOR TO ENTER    /    ARROWS + ENTER";
             _map.SetRoutes(world,progress);
             int total=0, complete=0;
             foreach(var entry in world.Entries)
             {
                 if(entry.Stage==null) continue;
-                total++; if(progress.IsCompleted(entry.Stage.StageId)) complete++;
+                total++; if(progress != null && progress.IsCompleted(entry.Stage.StageId)) complete++;
             }
             _progress.text=$"{complete:00} / {total:00} DOORS CLEARED";
+            _progress.gameObject.SetActive(!_previewOnly);
             _details.text=total==0 ? "NO STAGES REGISTERED" : "CHOOSE A DOOR";
         }
 
         public void Describe(StageNodeView node)
         {
+            if (_previewOnly)
+            {
+                _details.text = $"{node.Stage.DisplayName}   /   COMING SOON";
+                return;
+            }
             string state = !node.Unlocked ? "LOCKED" : node.Completed ? "CLEARED  /  REPLAY" : "READY";
             _details.text=$"{node.Stage.DisplayName}   /   {node.Stage.Sections.Count} SECTIONS   /   {state}";
         }

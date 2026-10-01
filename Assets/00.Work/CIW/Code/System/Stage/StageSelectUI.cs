@@ -16,6 +16,13 @@ namespace CIW.Code.System.Stage
 
         public event Action<StageDefinition> StageSelected;
 
+        public void Initialize(GameObject targetPanel, RectTransform targetRoot, StageNodeView prefab)
+        {
+            panel = targetPanel;
+            nodeRoot = targetRoot;
+            nodePrefab = prefab;
+        }
+
         public void Show(WorldDefinition world, StageProgressService progress)
         {
             ClearNodes();
@@ -34,7 +41,9 @@ namespace CIW.Code.System.Stage
                 var rect = (RectTransform)node.transform;
                 rect.anchoredPosition = entry.Position;
 
-                node.Bind(stage, progress.IsUnlocked(stage, world), progress.IsCompleted(stage.StageId), HandleSelected);
+                // 진행 서비스가 없는 메뉴 미리보기는 저장 기록을 읽거나 쓰지 않습니다.
+                node.Bind(stage, progress != null ? progress.IsUnlocked(stage, world) : stage.InitiallyUnlocked,
+                    progress != null && progress.IsCompleted(stage.StageId), HandleSelected);
                 node.UseMapStyle(HandleFocused);
 
                 _nodes.Add(node);

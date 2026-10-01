@@ -37,7 +37,7 @@ namespace CIW.Code.System.Stage
                         if (target.Stage != null && target.Stage.StageId == id)
                             _routes.Add((entry.Position + Vector2.down * 36,
                                 target.Position + Vector2.down * 36,
-                                progress.IsUnlocked(target.Stage, world)));
+                                progress != null ? progress.IsUnlocked(target.Stage, world) : target.Stage.InitiallyUnlocked));
             }
             SetVerticesDirty();
         }
