@@ -1,4 +1,5 @@
 using CIW.Code.System.Interface;
+using CIW.Code.System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,6 +14,8 @@ namespace CIW.Code.Player
         [SerializeField, Min(0.05f)] float respawnDelay = 0.65f;
         [SerializeField] Transform spawnPoint;
         [SerializeField] bool autoRespawn = true;
+        [Tooltip("단독 씬은 사망 후 저장된 씬을 다시 읽어 기믹까지 초기화합니다. 구간 관리자가 있으면 자동 리스폰 자체가 비활성화됩니다.")]
+        [SerializeField] bool reloadSceneOnDeath = true;
 
         public bool AutoRespawn => autoRespawn;
 
@@ -61,17 +64,26 @@ namespace CIW.Code.Player
 
         private void HandleDeath(DeathContext context)
         {
-            if (autoRespawn && _pendingRespawn == null && _player.Life.State == PlayerLifeState.Dead)
+            if (autoRespawn && !SceneRetryController.IsReloading && _pendingRespawn == null && _player.Life.State == PlayerLifeState.Dead)
                 _pendingRespawn = StartCoroutine(RespawnAfterDelay());
         }
 
         private IEnumerator RespawnAfterDelay()
         {
-            yield return new WaitForSeconds(Mathf.Max(0.05f, respawnDelay));
+            // 사망 연출 뒤 시간 배율이 0이어도 재시도할 수 있게 실제 시간을 사용합니다.
+            yield return new WaitForSecondsRealtime(Mathf.Max(0.05f, respawnDelay));
             _pendingRespawn = null;
             if (autoRespawn && _player.Life.State == PlayerLifeState.Dead)
+            {
+                if (reloadSceneOnDeath)
+                {
+                    // 사망 원인/기믹 종류와 무관하게 공통 재시작 처리에 위임합니다.
+                    SceneRetryController.TryRestart(gameObject.scene);
+                    yield break;
+                }
                 _player.Respawn(new PlayerSpawnData(
                     spawnPoint != null ? (Vector2)spawnPoint.position : _spawn.Position, _spawn.FaceRight));
+            }
         }
 
         private void CancelPendingRespawn()

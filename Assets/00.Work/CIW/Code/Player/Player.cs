@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CIW.Code.Player
 {
-    public class Player : Entity, IKillable, IPlayerRuleTarget
+    public class Player : Entity, IKillable, IKillableHitbox, IPlayerRuleTarget
     {
         [field : SerializeField] public InputSO PlayerInput { get; private set; }
 
@@ -15,6 +15,7 @@ namespace CIW.Code.Player
         // 발 감지용 Trigger가 아니라 실제 접지 판정에 사용하는 몸통입니다.
         public Collider2D BodyCollider => GetModule<PlayerGroundSensor>()?.BodyCollider;
         public bool IsAlive => Life != null && Life.IsAlive;
+        public bool IsDeathHitbox(Collider2D collider) => collider != null && collider == BodyCollider;
         public bool HasEscaped => Life != null && Life.State == PlayerLifeState.Escaped;
         public bool TryEscape() => Life != null && Life.TryEscape();
 

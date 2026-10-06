@@ -49,6 +49,12 @@ namespace CIW.Code.System.Interface
         void Kill(DeathContext context);
     }
 
+    // 접지/상호작용 센서와 실제 피격 Collider를 구분해야 하는 대상이 선택적으로 구현합니다.
+    public interface IKillableHitbox
+    {
+        bool IsDeathHitbox(Collider2D collider);
+    }
+
     public interface IPlayerRuleTarget
     {
         void SetHorizontalInverted(bool inverted);

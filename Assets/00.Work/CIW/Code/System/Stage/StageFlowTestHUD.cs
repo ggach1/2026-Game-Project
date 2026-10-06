@@ -1,11 +1,10 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using CIW.Code.System.Interface;
 
 namespace CIW.Code.System.Stage
 {
-    // 테스트 씬 전용: 구간 표시, 맵 밖 낙사, 개발용 진행 초기화 입력을 담당합니다.
+    // 테스트 씬 전용: 구간 표시와 개발용 진행 초기화 입력을 담당합니다. 낙사는 KillZone2D가 처리합니다.
     public class StageFlowTestHUD : MonoBehaviour
     {
         [SerializeField] StageFlowController flow;
@@ -43,8 +42,6 @@ namespace CIW.Code.System.Stage
             status.text = selecting ? "SELECT A STAGE" :
                 $"{flow.CurrentStage?.DisplayName}  /  Section {flow.CurrentSectionIndex + 1}  /  {flow.State}";
 
-            if (flow.State == StageFlowState.Playing && player.IsAlive && player.transform.position.y < -6f)
-                player.Kill(new DeathContext(player.transform.position, Vector2.zero, DeathCause.Unknown));
         }
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
