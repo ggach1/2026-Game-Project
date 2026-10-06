@@ -17,7 +17,10 @@ namespace KMJ.Code.Object
         [Header("Setting")]
         [SerializeField] private LayerMask targetMask;
         
-        [Range(0,3)]
+        [Space(10) ,SerializeField] private bool isOwnDirection;
+        [SerializeField] private Direction ownDirection;
+        
+        [Range(0,3), Space(10)]
         [SerializeField] private float minGravityScale = 0;
         
         [Range(1,10)]
@@ -47,14 +50,50 @@ namespace KMJ.Code.Object
             }
 
             _rbCompo.gravityScale = minGravityScale;
+
+            // 만약 isOwnDirection이 false면 ownDirection의 값은 None이 됨
+            if (!isOwnDirection)
+                ownDirection = Direction.None;
         }
 
 
-
+        /// <summary>
+        /// 떨어 뜨릴때 사용함
+        /// </summary>
         public void Interact() => _rbCompo.gravityScale = maxGravityScale;
-        
 
+        /// <summary>
+        /// 새로운 방향으로 설정함
+        /// </summary>
+        /// <param name="direction"></param>
         public void SetDirection(Vector2 direction) => _moveDirection = direction.normalized;
+
+        /// <summary>
+        /// 파라미터로 정해놓은 방향으로 움직임
+        /// </summary>
+        public void MoveOwnDirection()
+        {
+            if (ownDirection == Direction.None)
+                return;
+            
+            switch (ownDirection)
+            {
+                case Direction.Up:
+                    _moveDirection = Vector2.up;
+                    break;
+                case Direction.Down:
+                    _moveDirection = Vector2.down;
+                    break;
+                case Direction.Left:
+                    _moveDirection = Vector2.left;
+                    break;
+                case Direction.Right:
+                    _moveDirection = Vector2.right;
+                    break;
+                default:
+                    break;
+            }
+        }
 
         private void KillEnemy(Collider2D collider2D)
         {

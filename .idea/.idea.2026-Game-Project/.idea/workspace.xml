@@ -5,8 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8be6aa8-19b9-45b7-a4be-1c8b9d8cc48f" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/GrowObject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/GrowObject.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/SmashObject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/SmashObject.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TeleportationMachine.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TeleportationMachine.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/GrowObjectEditor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/GrowObjectEditor.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/SawEditor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/SawEditor.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/TargetMoveObjectEditor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/TargetMoveObjectEditor.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2026-Game-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2026-Game-Project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/00.Scene/Stage1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/00.Scene/Stage1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/00.Scene/Stage4.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/00.Scene/Stage4.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Missile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Missile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Saw.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Saw.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/SawShooter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/SawShooter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TargetMoveObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TargetMoveObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Black &amp; White Environments/Assets/Sprites/Saw Blade/Small_Circular Saw Blade_0010.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Black &amp; White Environments/Assets/Sprites/Saw Blade/Small_Circular Saw Blade_0010.png.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,12 +36,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/GrowObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/IInteractable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/InteractSignObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Missile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Saw.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/SawShooter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/SmashObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TargetMoveObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TeleportationMachine.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/GrowObjectEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/SawEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/TargetMoveObjectEditor.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -119,6 +144,9 @@
       <workItem from="1790134169934" duration="1483000" />
       <workItem from="1790603300091" duration="1674000" />
       <workItem from="1790638997375" duration="612000" />
+      <workItem from="1790750132950" duration="2417000" />
+      <workItem from="1790909781223" duration="14000" />
+      <workItem from="1791181046748" duration="6982000" />
     </task>
     <servers />
   </component>

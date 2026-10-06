@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace KMJ.Code.Object
 {
-    public enum SawDirection
+    public enum Direction
     {
         Right,
         Left,
@@ -17,7 +17,7 @@ namespace KMJ.Code.Object
     public class SawShooter : MonoBehaviour
     {
         [Header("Setting")]
-        [SerializeField] private SawDirection sawDirection;
+        [SerializeField] private Direction direction;
         [SerializeField] private bool isLoop = false;
 
         [Range(0f, 10f)]
@@ -49,25 +49,25 @@ namespace KMJ.Code.Object
             sawObj.transform.position = shootTrm.position;
             sawObj.transform.rotation = Quaternion.Euler(shootRotation);
          
-            switch (sawDirection)
+            switch (direction)
             {
-                case SawDirection.Right:
+                case Direction.Right:
                     sawObj.SetDirection(Vector3.right);
                     break;
                 
-                case SawDirection.Left:
+                case Direction.Left:
                     sawObj.SetDirection(Vector3.left);
                     break;
                 
-                case  SawDirection.Up:
+                case  Direction.Up:
                     sawObj.SetDirection(Vector3.up);
                     break;
                 
-                case  SawDirection.Down:
+                case  Direction.Down:
                     sawObj.SetDirection(Vector3.down);
                     break;
                 
-                case SawDirection.None:
+                case Direction.None:
                     break;
             }
         }

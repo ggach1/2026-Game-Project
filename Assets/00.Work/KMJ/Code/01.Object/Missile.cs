@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using DevLib.ObjectPool.Runtime;
 using UnityEngine;
@@ -21,7 +20,7 @@ namespace KMJ.Code.Object
         [Header("Pool")]
         
         [SerializeField] private PoolItemSO sawPoolItem;
-        [SerializeField] private PoolManagerSO _poolManager;
+        [SerializeField] private PoolManagerSO poolManager;
         
         [Space(10)]
         [Header("Event")]
@@ -45,13 +44,13 @@ namespace KMJ.Code.Object
             yield return new WaitForSeconds(waitTime);
 
 
-            Saw saw1 = _poolManager.Pop<Saw>(sawPoolItem);
-            Saw saw2 = _poolManager.Pop<Saw>(sawPoolItem);
+            Saw saw1 = poolManager.Pop<Saw>(sawPoolItem);
+            Saw saw2 = poolManager.Pop<Saw>(sawPoolItem);
 
             saw1.transform.position = transform.position;
             saw2.transform.position = transform.position;
             
-            saw1.transform.rotation = Quaternion.identity;
+            saw1.transform.rotation = Quaternion.identity;  
             saw2.transform.rotation = Quaternion.identity;
                 
             saw1.SetDirection(Vector2.right);
