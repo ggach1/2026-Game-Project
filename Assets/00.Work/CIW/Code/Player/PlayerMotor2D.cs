@@ -192,8 +192,15 @@ namespace CIW.Code.Player
             if (rigid == null)
                 return;
 
-            // 위치만 옮기면 사망 직전 속도가 남으므로 모든 물리 상태를 함께 초기화
+            // 사망 중에는 simulated=false이므로 Rigidbody 위치만 바꾸면 Transform에
+            // 피격 위치가 남을 수 있습니다. 재활성화 전에 두 좌표를 같은 스폰 위치로 맞춥니다.
+            Vector3 spawnPosition = rigid.transform.position;
+            spawnPosition.x = pos.x;
+            spawnPosition.y = pos.y;
+            rigid.transform.position = spawnPosition;
             rigid.position = pos;
+            Physics2D.SyncTransforms();
+            // 사망 직전 속도/입력/탑승 발판도 함께 초기화합니다.
             rigid.linearVelocity = Vector2.zero;
             rigid.angularVelocity = 0f;
             _moveInput = 0f;
