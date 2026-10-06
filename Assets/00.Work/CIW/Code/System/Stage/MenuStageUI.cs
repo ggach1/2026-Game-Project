@@ -3,12 +3,14 @@ using UnityEngine.UI;
 
 namespace CIW.Code.System.Stage
 {
-    // MenuScene의 표현만 구성합니다. 실제 스테이지 흐름/저장/테스트 키는 연결하지 않습니다.
+    // 메뉴 표현과 씬 기반 스테이지 선택을 연결합니다. 구간 프리팹용 테스트 흐름과는 독립적입니다.
     [RequireComponent(typeof(Canvas))]
     public sealed class MenuStageUI : MonoBehaviour
     {
         [SerializeField] WorldDefinition previewWorld;
         [SerializeField] StageNodeView nodePrefab;
+        StageSelectUI _select;
+        StageProgressService _progress;
 
         void Start()
         {
@@ -25,8 +27,22 @@ namespace CIW.Code.System.Stage
                 Vector2.zero, new Vector2(1000, 350));
             var select = gameObject.AddComponent<StageSelectUI>();
             select.Initialize(panel.gameObject, nodes, nodePrefab);
-            // null 진행 서비스는 UI 전용 모드입니다. 클릭해도 씬 전환/클리어 저장이 발생하지 않습니다.
-            select.Show(previewWorld, null);
+            _select = select;
+            _progress = GetComponent<StageProgressService>();
+            if (_progress == null) _progress = gameObject.AddComponent<StageProgressService>();
+            select.StageSelected += HandleSelected;
+            select.Show(previewWorld, _progress);
+        }
+
+        void HandleSelected(StageDefinition stage)
+        {
+            if (!_progress.IsUnlocked(stage, previewWorld)) return;
+            if (SceneStageFlowController.TryStart(stage, gameObject.scene.path)) _select.Hide();
+        }
+
+        void OnDestroy()
+        {
+            if (_select != null) _select.StageSelected -= HandleSelected;
         }
     }
 }

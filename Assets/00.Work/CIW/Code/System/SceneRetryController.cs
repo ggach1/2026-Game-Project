@@ -20,13 +20,18 @@ namespace CIW.Code.System
                 Debug.LogError("씬 재시작에는 저장된 로드 상태의 씬이 필요합니다. 씬을 저장한 뒤 다시 Play하세요.");
                 return false;
             }
-#if !UNITY_EDITOR
-            if (!Application.CanStreamedLevelBeLoaded(scene.path))
+            return TryLoadScene(scene.path);
+        }
+
+        // 다음 구간 이동도 재시도와 같은 잠금/정리 경로를 사용합니다.
+        public static bool TryLoadScene(string scenePath)
+        {
+            if (IsReloading) return false;
+            if (!CanLoadScene(scenePath))
             {
-                Debug.LogError($"Build Settings에 재시작할 씬을 등록하세요: {scene.path}");
+                Debug.LogError($"씬 경로와 Build Settings 등록을 확인하세요: {scenePath}");
                 return false;
             }
-#endif
             // 정리 콜백에서 다시 요청하더라도 로딩이 중복되지 않도록 먼저 잠급니다.
             IsReloading = true;
             try
@@ -35,14 +40,14 @@ namespace CIW.Code.System
                 Time.timeScale = 1f;
 #if UNITY_EDITOR
                 var operation = UnityEditor.SceneManagement.EditorSceneManager.LoadSceneAsyncInPlayMode(
-                    scene.path, new LoadSceneParameters(LoadSceneMode.Single));
+                    scenePath, new LoadSceneParameters(LoadSceneMode.Single));
 #else
-                var operation = SceneManager.LoadSceneAsync(scene.path, LoadSceneMode.Single);
+                var operation = SceneManager.LoadSceneAsync(scenePath, LoadSceneMode.Single);
 #endif
                 if (operation == null)
                 {
                     IsReloading = false;
-                    Debug.LogError($"씬 재시작 요청에 실패했습니다: {scene.path}");
+                    Debug.LogError($"씬 로딩 요청에 실패했습니다: {scenePath}");
                     return false;
                 }
                 operation.completed += _ => IsReloading = false;
@@ -75,6 +80,16 @@ namespace CIW.Code.System
                     Debug.LogException(exception, behaviour);
                 }
             }
+        }
+
+        public static bool CanLoadScene(string scenePath)
+        {
+            if (string.IsNullOrWhiteSpace(scenePath)) return false;
+#if UNITY_EDITOR
+            return UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEditor.SceneAsset>(scenePath) != null;
+#else
+            return Application.CanStreamedLevelBeLoaded(scenePath);
+#endif
         }
     }
 }
