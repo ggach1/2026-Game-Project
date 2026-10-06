@@ -5,7 +5,7 @@
 `Assets/00.Work/CIW/StageFlowTest/StageFlowTest.unity`를 열고 Play 합니다.
 생성 에디터 스크립트는 최초 임포트 때 누락된 테스트 씬을 생성하며, 기존 씬이 있으면 덮어쓰지 않습니다.
 필요하면 `CIW > Stage Flow > Create Test Assets (Only If Missing)` 메뉴로 생성할 수 있습니다.
-기존 MenuScene, Build Settings는 변경하지 않습니다.
+테스트 생성기는 기존 MenuScene, Build Settings를 변경하지 않습니다. 실제 메뉴의 씬 기반 연결은 아래 CUH 스테이지 항목을 참고하세요.
 
 ## 구성
 
@@ -78,7 +78,17 @@ CIW 테스트 Section_A1/A2/B1은 고정 낙사 영역을 사용합니다. KMJ S
 
 새 풀 기믹이나 씬 밖에 남는 실행 상태는 ISceneRetryCleanup.CleanupBeforeSceneRetry()에서 코루틴/트윈 등 자기 상태를 정리해야 합니다. 반복 호출에도 안전하게 구현하고, 이 함수에서 씬 로딩/리스폰은 하지 마세요. 인터페이스가 없는 풀 객체까지 자동 반환하는 기능은 아닙니다. 현재 정리 검색은 Single 모드 전체 씬 교체용이며, 동시 실행하는 여러 맵의 선택적 초기화 용도가 아닙니다.
 
-씬에 배치된 일반 기믹은 씬 로딩으로 재생성합니다. 구간형 StageFlowController는 자동 씬 재로드를 끄고 기존 구간 재생성 흐름을 유지합니다(공통 전체 씬 정리를 호출하지 않음). MenuScene은 여전히 UI 전용입니다. 테스트: 톱을 여러 개 발사한 뒤 F8/톱 접촉/낙사로 각각 죽고, 이전 톱이 남지 않는지 및 세 번 이상 연속 재시도가 되는지 확인하세요. 실제 반복 재시도는 저장한 각 씬에서 Play로 확인하세요.
+씬에 배치된 일반 기믹은 씬 로딩으로 재생성합니다. 프리팹 구간형 StageFlowController는 자동 씬 재로드를 끄고 기존 구간 재생성 흐름을 유지합니다(공통 전체 씬 정리를 호출하지 않음). 테스트: 톱을 여러 개 발사한 뒤 F8/톱 접촉/낙사로 각각 죽고, 이전 톱이 남지 않는지 및 세 번 이상 연속 재시도가 되는지 확인하세요.
+
+## 실제 메뉴: CUH 스테이지
+
+`Assets/00.Work/GameScene/MenuScene.unity`에서 Play하고 STAGE 01 문을 선택합니다. 이 스테이지는 `Map 1 → Map 2 → Map 3 → Map 4` 네 씬을 순서대로 진행합니다. 각 출구의 입장 연출이 끝나면 다음 맵으로 이동하며, 마지막 맵에서만 완료 기록을 저장하고 메뉴로 복귀합니다. 메뉴에서 다시 선택하면 Map 1부터 재도전합니다. 중간 구간 번호는 실행 중에만 유지하며 앱 재실행 시 이어하기는 제공하지 않습니다.
+
+MenuStageUI가 SceneStageFlowController를 생성하므로 맵마다 추가 컴포넌트를 붙일 필요 없습니다. 기존 PlayerRespawnTest의 사망 재로드는 유지하고, 씬 로드마다 새 ExitDoor에 이벤트를 다시 연결합니다. 맵 씬을 직접 Play하면 기존 단독 사망 테스트 모드이며 순차 진행 세션은 시작하지 않습니다.
+
+검증 순서: 메뉴에서 4 SECTIONS 표시 확인 → Map 1 출구로 Map 2 이동 → Map 2에서 F8/낙사 후 Map 2 시작 위치와 기믹 초기화 확인 → Map 3/4 순차 진행 → 마지막 출구 후 메뉴의 CLEARED 확인 → 다시 선택해 Map 1 진입 확인. 에셋 연결 회귀 테스트는 EditMode의 SceneStageFlowTests입니다.
+
+메뉴와 네 맵은 Build Settings에 등록했습니다. 기존 첫 씬 SampleScene의 순서는 보존했으므로 빌드 시작 화면까지 메뉴로 바꾸려면 MenuScene을 첫 씬으로 설정해야 합니다. DevLib/ObjectPool은 변경하지 않습니다.
 
 회귀 테스트는 Unity Test Runner의 EditMode에서 `KillContact2DTests`를 실행하세요. 센서 제외, 부모 레이어 검사, 중복 사망 방지, 사망 문맥 전달과 낙사 프리팹 설정을 검사합니다.
 
