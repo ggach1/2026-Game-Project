@@ -5,27 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8be6aa8-19b9-45b7-a4be-1c8b9d8cc48f" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/GrowObject.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/GrowObject.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/SmashObject.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/SmashObject.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TeleportationMachine.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TeleportationMachine.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/GrowObjectEditor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/GrowObjectEditor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/SawEditor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/SawEditor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/TargetMoveObjectEditor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/TargetMoveObjectEditor.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2026-Game-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2026-Game-Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/00.Scene/Stage1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/00.Scene/Stage1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/00.Scene/Stage4.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/00.Scene/Stage4.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Missile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Missile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Saw.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Saw.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/SawShooter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/SawShooter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TargetMoveObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TargetMoveObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Black &amp; White Environments/Assets/Sprites/Saw Blade/Small_Circular Saw Blade_0010.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Black &amp; White Environments/Assets/Sprites/Saw Blade/Small_Circular Saw Blade_0010.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00.Work/CUH/00.Scene/Map1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Work/CUH/00.Scene/Map1.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,18 +17,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/GrowObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/IInteractable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/InteractSignObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Missile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/Saw.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/SawShooter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/SmashObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TargetMoveObject.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/01.Object/TeleportationMachine.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/GrowObjectEditor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/SawEditor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/00.Work/KMJ/Code/Editor/TargetMoveObjectEditor.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -61,7 +36,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;KMJ&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;chuh&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -72,27 +47,19 @@
 }</component>
   <component name="RunManager" selected="Unity 에디터에 연결.Unity 에디터에 연결">
     <configuration name="유닛 테스트(배치 모드)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.8f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\UnityVersion\6000.3.8f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\anyunity\2026-Game-Project -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\anyunity\2026-Game-Project" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="ENV_FILE_PATHS" value="" />
-      <option name="REDIRECT_INPUT_PATH" value="" />
-      <option name="PTY_MODE" value="Auto" />
-      <option name="MIXED_MODE_DEBUG" value="0" />
       <method v="2" />
     </configuration>
     <configuration name="Unity 시작" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.8f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\UnityVersion\6000.3.8f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\anyunity\2026-Game-Project -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\anyunity\2026-Game-Project" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="ENV_FILE_PATHS" value="" />
-      <option name="REDIRECT_INPUT_PATH" value="" />
-      <option name="PTY_MODE" value="Auto" />
-      <option name="MIXED_MODE_DEBUG" value="0" />
       <method v="2" />
     </configuration>
     <configuration name="Unity 에디터에 연결" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
@@ -106,7 +73,6 @@
       <option name="selectedOptions">
         <list />
       </option>
-      <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
     <configuration name="Unreal 에디터에 연결 후 재생" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
@@ -120,7 +86,6 @@
       <option name="selectedOptions">
         <list />
       </option>
-      <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
     <configuration name="기기에 연결" type="UnityDevicePlayer" factoryName="UnityAttachToDevicePlayer">
@@ -144,9 +109,9 @@
       <workItem from="1790134169934" duration="1483000" />
       <workItem from="1790603300091" duration="1674000" />
       <workItem from="1790638997375" duration="612000" />
-      <workItem from="1790750132950" duration="2417000" />
-      <workItem from="1790909781223" duration="14000" />
-      <workItem from="1791181046748" duration="6982000" />
+      <workItem from="1790862744169" duration="1332000" />
+      <workItem from="1791108309510" duration="1919000" />
+      <workItem from="1791202451420" duration="2129000" />
     </task>
     <servers />
   </component>
@@ -162,23 +127,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
-          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
-          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
-          <option name="timeStamp" value="2" />
-        </breakpoint>
-        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
-          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
-          <option name="timeStamp" value="3" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
