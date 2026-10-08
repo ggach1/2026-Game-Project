@@ -3904,7 +3904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4371958824270385410, guid: 944d495022bcc434da572ea40541e761, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.43643
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 4371958824270385410, guid: 944d495022bcc434da572ea40541e761, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4180,6 +4180,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 3.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3536831534758422066, guid: 1f1a86b577fed804f818450670bf4fd5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.9
+      objectReference: {fileID: 0}
     - target: {fileID: 4150559485049588150, guid: 1f1a86b577fed804f818450670bf4fd5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.06
@@ -4220,9 +4224,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5025601015545010816, guid: 1f1a86b577fed804f818450670bf4fd5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.9
+      objectReference: {fileID: 0}
     - target: {fileID: 5786306654087798619, guid: 1f1a86b577fed804f818450670bf4fd5, type: 3}
       propertyPath: m_Name
       value: MoveTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447788043457607581, guid: 1f1a86b577fed804f818450670bf4fd5, type: 3}
+      propertyPath: moveTargets.Array.data[1].<WaitTime>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447788043457607581, guid: 1f1a86b577fed804f818450670bf4fd5, type: 3}
+      propertyPath: moveTargets.Array.data[2].<WaitTime>k__BackingField
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
