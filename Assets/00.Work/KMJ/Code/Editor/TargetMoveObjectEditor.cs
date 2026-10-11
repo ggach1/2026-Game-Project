@@ -9,6 +9,7 @@ namespace KMJ.Code.Object
         private SerializedProperty isSecondMove;
         private SerializedProperty isOnceMove;
         private SerializedProperty secondTarget;
+        private SerializedProperty secondMove;
         private SerializedProperty onceTarget;
 
         private void OnEnable()
@@ -17,6 +18,7 @@ namespace KMJ.Code.Object
             secondTarget = serializedObject.FindProperty("secondTarget");
             isOnceMove = serializedObject.FindProperty("isOnceMove");
             onceTarget = serializedObject.FindProperty("onceTarget");
+            secondMove = serializedObject.FindProperty("moveTime2");
         }
 
         public override void OnInspectorGUI()
@@ -41,6 +43,13 @@ namespace KMJ.Code.Object
                     EditorGUILayout.PropertyField(property, true);
                 }
                 else if (property.name == "secondTarget")
+                {
+                    if (isSecondMove.boolValue)
+                    {
+                        EditorGUILayout.PropertyField(property, true);
+                    }
+                }
+                else if (property.name == "moveTime2")
                 {
                     if (isSecondMove.boolValue)
                     {

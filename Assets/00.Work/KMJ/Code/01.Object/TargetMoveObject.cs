@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -19,12 +20,12 @@ namespace KMJ.Code.Object
         /// </summary>
         [Space(5),SerializeField] private bool isOnceMove;
         [SerializeField] private Transform onceTarget;
-        
+
         [Space(5)]
         [Header("Setting")]
         
-        [Range(0,10)]
-        [SerializeField] private float moveTime;
+        [Range(0,10),SerializeField] private float moveTime;
+        [Range(0, 10)] [SerializeField] private float moveTime2;
         
         [SerializeField] private GameObject thisGameObject;
         
@@ -45,7 +46,7 @@ namespace KMJ.Code.Object
             {
                 _seq.Append(thisGameObject.transform.DOMove(target.position, moveTime).SetEase(Ease.Linear))
                     .AppendInterval(waitTime)
-                    .Append(thisGameObject.transform.DOMove(secondTarget.position, moveTime).SetEase(Ease.Linear));
+                    .Append(thisGameObject.transform.DOMove(secondTarget.position, moveTime2).SetEase(Ease.Linear));
             }
             else
             {
@@ -66,6 +67,19 @@ namespace KMJ.Code.Object
             _seq.Append(thisGameObject.transform.DOMove(target.position, 0.2f).SetEase(Ease.Linear))
                 .AppendInterval(0.1f)
                 .Append(thisGameObject.transform.DOMove(onceTarget.position, 0.2f).SetEase(Ease.Linear));
+        }
+
+        public void WaitMove()
+        {
+            StartCoroutine(WaitMoveTimming());
+        }
+
+        private IEnumerator WaitMoveTimming()
+        {
+            _seq = DOTween.Sequence();
+            yield return new WaitForSeconds(waitTime);
+
+            _seq.Append(thisGameObject.transform.DOMove(target.position, moveTime).SetEase(Ease.Linear));
         }
     }
 }
