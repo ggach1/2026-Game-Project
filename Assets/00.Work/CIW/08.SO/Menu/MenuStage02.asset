@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c72856b38c0535a4d9d02f99ee4a0724, type: 3}
   m_Name: MenuStage02
   m_EditorClassIdentifier: Assembly-CSharp::CIW.Code.System.Stage.StageDefinition
-  stageId: menu_preview_02
+  stageId: cuh_stage_02
   displayName: STAGE 02
-  initiallyUnlocked: 1
+  initiallyUnlocked: 0
   sections: []
-  unlockStage: []
+  scenePaths:
+  - Assets/00.Work/CUH/00.Scene/Map_2 1.unity
+  - Assets/00.Work/CUH/00.Scene/Map_2 2.unity
+  - Assets/00.Work/CUH/00.Scene/Map_2 3.unity
+  - Assets/00.Work/CUH/00.Scene/Map_2 4.unity
+  unlockStage:
+  - cuh_stage_03

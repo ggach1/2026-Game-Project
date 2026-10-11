@@ -21,4 +21,5 @@ MonoBehaviour:
   - Assets/00.Work/CUH/00.Scene/Map 2.unity
   - Assets/00.Work/CUH/00.Scene/Map 3.unity
   - Assets/00.Work/CUH/00.Scene/Map 4.unity
-  unlockStage: []
+  unlockStage:
+  - cuh_stage_02

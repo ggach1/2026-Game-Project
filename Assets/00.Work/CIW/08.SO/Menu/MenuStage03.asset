@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c72856b38c0535a4d9d02f99ee4a0724, type: 3}
+  m_Name: MenuStage03
+  m_EditorClassIdentifier: Assembly-CSharp::CIW.Code.System.Stage.StageDefinition
+  stageId: cuh_stage_03
+  displayName: STAGE 03
+  initiallyUnlocked: 0
+  sections: []
+  scenePaths:
+  - Assets/00.Work/CUH/00.Scene/Map_3 1.unity
+  - Assets/00.Work/CUH/00.Scene/Map_3 2.unity
+  unlockStage: []
