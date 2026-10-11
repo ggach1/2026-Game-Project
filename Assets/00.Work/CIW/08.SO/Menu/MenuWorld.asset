@@ -14,6 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CIW.Code.System.Stage.WorldDefinition
   entries:
   - stage: {fileID: 11400000, guid: 33dcd25b208c4dd9a8251d3dc7235578, type: 2}
-    position: {x: -200, y: 0}
-  - stage: {fileID: 11400000, guid: 6edfd92f817a4b04b95328db4b29f181, type: 2}
-    position: {x: 200, y: 0}
+    position: {x: 0, y: 0}

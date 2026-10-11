@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Numerics;
 using DevLib.ObjectPool.Runtime;
+using CIW.Code.System;
+using CIW.Code.System.Interface;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
 namespace KMJ.Code.Object
 {
-    public class Saw : MonoBehaviour, IInteractable, IPoolable
+    public class Saw : MonoBehaviour, IInteractable, IPoolable, ISceneRetryCleanup
     {
         [Header("Pool")]
         [field: SerializeField] public PoolItemSO PoolItem { get; set; }
@@ -36,6 +38,7 @@ namespace KMJ.Code.Object
         
         private Rigidbody2D _rbCompo;
         private Vector2 _moveDirection = Vector2.zero;
+        private bool _borrowedFromPool;
         
         
 
@@ -95,11 +98,6 @@ namespace KMJ.Code.Object
             }
         }
 
-        private void KillEnemy(Collider2D collider2D)
-        {
-            collider2D.gameObject.SetActive(false);
-        }
-
         private void FixedUpdate()
         {
             if (_moveDirection != Vector2.zero)
@@ -108,26 +106,47 @@ namespace KMJ.Code.Object
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D other) => TryKillTarget(other);
+        private void OnTriggerStay2D(Collider2D other) => TryKillTarget(other);
+
+        private void TryKillTarget(Collider2D other)
         {
-            if ((targetMask.value & (1 << other.gameObject.layer)) != 0)
-            {
-                KillEnemy(other);
-            }
+            if (!isActiveAndEnabled || other == null) return;
+            // 센서가 먼저 닿아도 죽이지 않고, 실제 몸통 접촉 시 플레이어의 사망 이벤트를 발생시킵니다.
+            Vector2 origin = transform.position;
+            KillContact2D.TryKill(other, targetMask, new DeathContext(other.ClosestPoint(origin),
+                ((Vector2)other.bounds.center - origin).normalized, DeathCause.Saw));
         }
 
         public void ResetItem()
         {
+            _borrowedFromPool = true;
+            StopAllCoroutines();
+            _moveDirection = Vector2.zero;
             _rbCompo.gravityScale = minGravityScale;
             _rbCompo.linearVelocity = Vector2.zero; 
+            _rbCompo.angularVelocity = 0f;
             StartCoroutine(WaitPushObject());
+        }
+
+        public void CleanupBeforeSceneRetry() => ReturnToPool();
+
+        private void ReturnToPool()
+        {
+            // 씬에 직접 배치된 톱은 풀에 넣지 않습니다. Pop -> ResetItem을 거친 톱만 반환합니다.
+            if (!_borrowedFromPool || poolManager == null) return;
+            _borrowedFromPool = false;
+            StopAllCoroutines();
+            _moveDirection = Vector2.zero;
+            _rbCompo.linearVelocity = Vector2.zero;
+            _rbCompo.angularVelocity = 0f;
+            poolManager.Push(this);
         }
         
         private IEnumerator WaitPushObject()
         {
             yield return new WaitForSeconds(lifeTime);
-            poolManager.Push(this);
-            gameObject.SetActive(false);
+            ReturnToPool();
         }
     }
 }

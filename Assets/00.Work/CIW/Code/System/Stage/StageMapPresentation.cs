@@ -69,7 +69,7 @@ namespace CIW.Code.System.Stage
                 return;
             }
             string state = !node.Unlocked ? "LOCKED" : node.Completed ? "CLEARED  /  REPLAY" : "READY";
-            _details.text=$"{node.Stage.DisplayName}   /   {node.Stage.Sections.Count} SECTIONS   /   {state}";
+            _details.text=$"{node.Stage.DisplayName}   /   {node.Stage.SectionCount} SECTIONS   /   {state}";
         }
 
         public void Fit()

@@ -99,10 +99,11 @@ namespace CIW.Code.Player
             _inputController.SetInputEnabled(false);
             _motor.SetSimulationEnabled(false);
             _rules.ResetAll();
-            _motor.ResetMotion(data.Position);
-            _groundSensor.ResetContactState();
             _view.ResetView(data.FaceRight);
             _view.PlayRespawn();
+            // 외형/Animator 초기화 이후 위치를 최종 확정한 뒤 물리와 피격을 다시 허용합니다.
+            _motor.ResetMotion(data.Position);
+            _groundSensor.ResetContactState();
 
             State = PlayerLifeState.Alive;
             _motor.SetSimulationEnabled(true);

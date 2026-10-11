@@ -145,6 +145,13 @@ namespace CIW.Code.System.Stage.Editor
             {
                 var root = new GameObject("Section_" + id);
                 var context = root.AddComponent<SectionContext>();
+                // 새로 생성하는 테스트 구간도 HUD 좌표 검사 대신 실제 낙사 영역을 사용합니다.
+                var fallCollider = root.AddComponent<BoxCollider2D>();
+                fallCollider.isTrigger = true;
+                fallCollider.offset = new Vector2(0, -8);
+                fallCollider.size = new Vector2(1000, 4);
+                root.AddComponent<KillZone2D>().Configure(
+                    CIW.Code.System.Interface.DeathCause.Fall, LayerMask.GetMask("Player"));
                 var spawn = new GameObject("Spawn Point").transform; spawn.SetParent(root.transform);
                 spawn.position = new Vector3(-6, -1.4f, 0);
                 void Ground(string name, float x, float width)

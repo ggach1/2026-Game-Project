@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using KMJ.Code.Object;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace _00.Work.CUH.Code.Gimmick
 {
@@ -22,10 +23,14 @@ namespace _00.Work.CUH.Code.Gimmick
         [SerializeField] private GameObject thisGameObject;
         [SerializeField] private bool onlyOnce;
 
+        [Header("Events")]
+        [SerializeField] private UnityEvent onMoveCompleted = new();
+
         private int _moveVersion;
         private bool _hasInteracted;
 
         public bool IsMoving { get; private set; }
+        public bool HasInteracted => _hasInteracted;
 
         public async void Interact()
         {
@@ -41,22 +46,32 @@ namespace _00.Work.CUH.Code.Gimmick
             IsMoving = true;
             _hasInteracted = true;
 
+            bool completed = await MoveTargetsAsync(movingTransform, moveVersion);
+
+            if (this == null || moveVersion != _moveVersion) return;
+
+            IsMoving = false;
+            if (completed)
+                onMoveCompleted?.Invoke();
+        }
+
+        private async Awaitable<bool> MoveTargetsAsync(Transform movingTransform, int moveVersion)
+        {
             for (int i = 0; i < moveTargets.Count; i++)
             {
-                if (CanMove(movingTransform, moveVersion) == false) break;
+                if (CanMove(movingTransform, moveVersion) == false) return false;
 
                 MoveTarget moveTarget = moveTargets[i];
-                if (moveTarget == null || moveTarget.Target == null) break;
+                if (moveTarget == null || moveTarget.Target == null) return false;
 
                 await MoveAsync(movingTransform, moveTarget.Target.position, moveTarget.MoveTime, moveVersion);
 
-                if (CanMove(movingTransform, moveVersion) == false) break;
+                if (CanMove(movingTransform, moveVersion) == false) return false;
 
                 await WaitAsync(movingTransform, moveTarget.WaitTime, moveVersion);
             }
 
-            if (this != null && moveVersion == _moveVersion)
-                IsMoving = false;
+            return CanMove(movingTransform, moveVersion);
         }
 
         private async Awaitable MoveAsync(Transform movingTransform, Vector3 targetPosition, float moveTime,

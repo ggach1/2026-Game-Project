@@ -227,6 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CIW.Code.Player.PlayerRespawnTest
   respawnDelay: 0.65
   spawnPoint: {fileID: 0}
+  reloadSceneOnDeath: 1
 --- !u!114 &5324832959818065971
 MonoBehaviour:
   m_ObjectHideFlags: 0
