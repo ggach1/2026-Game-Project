@@ -17,7 +17,6 @@ MonoBehaviour:
   initiallyUnlocked: 0
   sections: []
   scenePaths:
-  - Assets/00.Work/KMJ/00.Scene/Stage9.unity
   - Assets/00.Work/KMJ/00.Scene/Stage10.unity
   - Assets/00.Work/KMJ/00.Scene/Stage11.unity
   - Assets/00.Work/KMJ/00.Scene/Stage12.unity

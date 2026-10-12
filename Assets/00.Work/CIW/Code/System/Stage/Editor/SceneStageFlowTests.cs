@@ -11,7 +11,7 @@ namespace CIW.Code.System.Stage.Editor
         [TestCase(2, "cuh_stage_03", "CUH", "Map_3 ", 1, 4)]
         [TestCase(3, "kmj_stage_01", "KMJ", "Stage", 1, 4)]
         [TestCase(4, "kmj_stage_02", "KMJ", "Stage", 5, 4)]
-        [TestCase(5, "kmj_stage_03", "KMJ", "Stage", 9, 5)]
+        [TestCase(5, "kmj_stage_03", "KMJ", "Stage", 10, 4)]
         public void MenuHasOrderedLoadableScenes(int index, string id, string folder, string prefix, int first, int count)
         {
             var world = AssetDatabase.LoadAssetAtPath<WorldDefinition>(
