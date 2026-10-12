@@ -903,7 +903,7 @@ MonoBehaviour:
   targetMask:
     serializedVersion: 2
     m_Bits: 8
-  bottomMargin: 5
+  bottomMargin: 1
   horizontalMargin: 30
   depth: 20
 --- !u!1 &1117817061
