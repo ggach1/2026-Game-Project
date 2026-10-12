@@ -14,6 +14,10 @@ namespace KMJ.Code.Object
 
         private bool _isActive = true;
 
+        [SerializeField] private bool isOnceActive = false;
+
+        private int _activeCnt = 0;
+        
         public void IsActiveSign(bool isActive)
         {
             _isActive = isActive;
@@ -28,9 +32,12 @@ namespace KMJ.Code.Object
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (isOnceActive && _activeCnt != 0) return;
+            
             if ((targetLayer.value & (1 << other.gameObject.layer)) != 0)
             {
                 Sign();
+                _activeCnt += 1;
             } 
         } 
     }
