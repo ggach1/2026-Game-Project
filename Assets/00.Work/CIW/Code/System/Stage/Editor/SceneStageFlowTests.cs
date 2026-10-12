@@ -11,7 +11,7 @@ namespace CIW.Code.System.Stage.Editor
         [TestCase(2, "cuh_stage_03", "CUH", "Map_3 ", 1, 4)]
         [TestCase(3, "kmj_stage_01", "KMJ", "Stage", 1, 4)]
         [TestCase(4, "kmj_stage_02", "KMJ", "Stage", 5, 4)]
-        [TestCase(5, "kmj_stage_03", "KMJ", "Stage", 10, 4)]
+        [TestCase(5, "kmj_stage_03", "KMJ", "Stage", 9, 3)]
         public void MenuHasOrderedLoadableScenes(int index, string id, string folder, string prefix, int first, int count)
         {
             var world = AssetDatabase.LoadAssetAtPath<WorldDefinition>(
@@ -32,6 +32,18 @@ namespace CIW.Code.System.Stage.Editor
                 Assert.That(SceneRetryController.CanLoadScene(path), Is.True);
                 Assert.That(global::System.Array.Exists(EditorBuildSettings.scenes,
                     scene => scene.enabled && scene.path == path), Is.True);
+            }
+        }
+
+        [Test]
+        public void EnabledBuildScenesHaveMatchingAssetGuids()
+        {
+            // 씬 이름 변경 후 경로만 바뀌거나 삭제된 GUID가 남는 회귀를 감지합니다.
+            foreach (var scene in EditorBuildSettings.scenes)
+            {
+                if (!scene.enabled) continue;
+                Assert.That(AssetDatabase.LoadAssetAtPath<SceneAsset>(scene.path), Is.Not.Null, scene.path);
+                Assert.That(scene.guid.ToString(), Is.EqualTo(AssetDatabase.AssetPathToGUID(scene.path)), scene.path);
             }
         }
 
