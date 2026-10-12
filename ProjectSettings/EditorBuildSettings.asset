@@ -80,6 +80,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00.Work/KMJ/00.Scene/Stage13.unity
     guid: 229379f19e0288d4da2d92969597c38b
+  - enabled: 1
+    path: Assets/00.Work/CUH/00.Scene/Map_3 3.unity
+    guid: 8e919ba3219f214468f19204eb5346cd
+  - enabled: 1
+    path: Assets/00.Work/CUH/00.Scene/Map_3 4.unity
+    guid: efaa3dc350e94da45b5fe10cf8455cbe
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
