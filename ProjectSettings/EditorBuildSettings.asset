@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
     path: Assets/00.Work/GameScene/MenuScene.unity
     guid: ff8cfb4642255964a91e3e7eeadcb291
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/00.Work/CUH/00.Scene/Map 1.unity
     guid: 03cc790f89a7a694095b99756b8f28ee
@@ -41,6 +41,51 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00.Work/CUH/00.Scene/Map_3 2.unity
     guid: 6d4fbd6ea69c98749807d3f9aa5c51f7
+  - enabled: 1
+    path: Assets/00.Work/KMJ/00.Scene/Stage1.unity
+    guid: 56a31c92bc61a2149b13d4772ab702eb
+  - enabled: 1
+    path: Assets/00.Work/KMJ/00.Scene/Stage2.unity
+    guid: afdfc926ec305d945be84ddc4756222a
+  - enabled: 1
+    path: Assets/00.Work/KMJ/00.Scene/Stage3.unity
+    guid: 14d536bcdb3a80f4b83b6a9b6cab6289
+  - enabled: 1
+    path: Assets/00.Work/KMJ/00.Scene/Stage4.unity
+    guid: 5e286b2646ff04f4d95cfdbcf4ada1f0
+  - enabled: 1
+    path: Assets/00.Work/KMJ/00.Scene/Stage5.unity
+    guid: 6b8e96174d693b741a9e0dd685d0c0ae
+  - enabled: 1
+    path: Assets/00.Work/KMJ/00.Scene/Stage6.unity
+    guid: 7415672fe7593504e9036e5c564fc800
+  - enabled: 1
+    path: Assets/00.Work/KMJ/00.Scene/Stage7.unity
+    guid: c2ae4a4700ef3a44a9564703c1127d38
+  - enabled: 1
+    path: Assets/00.Work/KMJ/00.Scene/Stage8.unity
+    guid: fa108d1b0d4ba5c4295f8b72bfe2692c
+  - enabled: 1
+    path: Assets/00.Work/KMJ/00.Scene/Stage9.unity
+    guid: 1cc8f68a8c2d0304388573a30e5b9e50
+  - enabled: 1
+    path: Assets/00.Work/KMJ/00.Scene/Stage10.unity
+    guid: 3374a5929c4345a488118354a972826f
+  - enabled: 1
+    path: Assets/00.Work/KMJ/00.Scene/Stage11.unity
+    guid: 7a1ccce2f64226c4f96acc160a8ce6ac
+  - enabled: 1
+    path: Assets/00.Work/KMJ/00.Scene/Stage12.unity
+    guid: a3b533188112e16428623b5e3f03281c
+  - enabled: 1
+    path: Assets/00.Work/KMJ/00.Scene/Stage13.unity
+    guid: 229379f19e0288d4da2d92969597c38b
+  - enabled: 1
+    path: Assets/00.Work/CUH/00.Scene/Map_3 3.unity
+    guid: 8e919ba3219f214468f19204eb5346cd
+  - enabled: 1
+    path: Assets/00.Work/CUH/00.Scene/Map_3 4.unity
+    guid: efaa3dc350e94da45b5fe10cf8455cbe
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -120,7 +120,8 @@ namespace CIW.Code.Player
         {
             _dead = true;
             // 렌더러를 숨기기 전에 마지막 위치를 기준으로 파편을 생성합니다.
-            _deathBurst?.Play(_entityAnimator?.Renderer, _rules.GravityDirection);
+            _deathBurst?.Play(_entityAnimator?.Renderer, _rules.GravityDirection,
+                context.Cause == DeathCause.Fall);
             _entityAnimator?.ResetTrigger(_respawnHash);
             _entityAnimator?.SetTrigger(_deathHash);
 

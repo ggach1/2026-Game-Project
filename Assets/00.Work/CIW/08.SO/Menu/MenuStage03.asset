@@ -19,4 +19,7 @@ MonoBehaviour:
   scenePaths:
   - Assets/00.Work/CUH/00.Scene/Map_3 1.unity
   - Assets/00.Work/CUH/00.Scene/Map_3 2.unity
-  unlockStage: []
+  - Assets/00.Work/CUH/00.Scene/Map_3 3.unity
+  - Assets/00.Work/CUH/00.Scene/Map_3 4.unity
+  unlockStage:
+  - kmj_stage_01
