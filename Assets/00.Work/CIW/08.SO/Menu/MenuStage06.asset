@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c72856b38c0535a4d9d02f99ee4a0724, type: 3}
+  m_Name: MenuStage06
+  m_EditorClassIdentifier: Assembly-CSharp::CIW.Code.System.Stage.StageDefinition
+  stageId: kmj_stage_03
+  displayName: STAGE 06
+  initiallyUnlocked: 0
+  sections: []
+  scenePaths:
+  - Assets/00.Work/KMJ/00.Scene/Stage9.unity
+  - Assets/00.Work/KMJ/00.Scene/Stage10.unity
+  - Assets/00.Work/KMJ/00.Scene/Stage11.unity
+  - Assets/00.Work/KMJ/00.Scene/Stage12.unity
+  - Assets/00.Work/KMJ/00.Scene/Stage13.unity
+  unlockStage: []
