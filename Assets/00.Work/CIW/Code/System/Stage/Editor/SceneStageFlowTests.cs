@@ -8,7 +8,7 @@ namespace CIW.Code.System.Stage.Editor
     {
         [TestCase(0, "cuh_stage_01", "CUH", "Map ", 1, 4)]
         [TestCase(1, "cuh_stage_02", "CUH", "Map_2 ", 1, 4)]
-        [TestCase(2, "cuh_stage_03", "CUH", "Map_3 ", 1, 2)]
+        [TestCase(2, "cuh_stage_03", "CUH", "Map_3 ", 1, 4)]
         [TestCase(3, "kmj_stage_01", "KMJ", "Stage", 1, 4)]
         [TestCase(4, "kmj_stage_02", "KMJ", "Stage", 5, 4)]
         [TestCase(5, "kmj_stage_03", "KMJ", "Stage", 9, 5)]
